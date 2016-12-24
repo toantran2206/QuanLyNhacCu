@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LoaiNhacCu">
+    <Key>
+      <PropertyRef Name="MaLoaiNC" />
+    </Key>
+    <Property Name="MaLoaiNC" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="TenLoaiNC" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NhacCu">
+    <Key>
+      <PropertyRef Name="MaNC" />
+    </Key>
+    <Property Name="MaNC" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="TenNC" Type="nvarchar" MaxLength="50" />
+    <Property Name="NhanHieu" Type="nvarchar" MaxLength="50" />
+    <Property Name="NamSanXuat" Type="nvarchar" MaxLength="50" />
+    <Property Name="DonGia" Type="float" />
+    <Property Name="MaLoaiNC" Type="nvarchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhieuMuon">
+    <Key>
+      <PropertyRef Name="MaSV" />
+      <PropertyRef Name="MaNC" />
+    </Key>
+    <Property Name="MaSV" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="MaNC" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="NgayMuon" Type="datetime" />
+    <Property Name="NgayTra" Type="datetime" />
+    <Property Name="ThanhTien" Type="float" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="MaSV" />
+    </Key>
+    <Property Name="MaSV" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="TenSV" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="12" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgaySinh" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_NhacCu_LoaiNhacCu">
+    <End Role="LoaiNhacCu" Type="Self.LoaiNhacCu" Multiplicity="1" />
+    <End Role="NhacCu" Type="Self.NhacCu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiNhacCu">
+        <PropertyRef Name="MaLoaiNC" />
+      </Principal>
+      <Dependent Role="NhacCu">
+        <PropertyRef Name="MaLoaiNC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuMuon_NhacCu">
+    <End Role="NhacCu" Type="Self.NhacCu" Multiplicity="1" />
+    <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhacCu">
+        <PropertyRef Name="MaNC" />
+      </Principal>
+      <Dependent Role="PhieuMuon">
+        <PropertyRef Name="MaNC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuMuon_SinhVien">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
+    <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="MaSV" />
+      </Principal>
+      <Dependent Role="PhieuMuon">
+        <PropertyRef Name="MaSV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLNCModelStoreContainer">
+    <EntitySet Name="LoaiNhacCu" EntityType="Self.LoaiNhacCu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhacCu" EntityType="Self.NhacCu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuMuon" EntityType="Self.PhieuMuon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_NhacCu_LoaiNhacCu" Association="Self.FK_NhacCu_LoaiNhacCu">
+      <End Role="LoaiNhacCu" EntitySet="LoaiNhacCu" />
+      <End Role="NhacCu" EntitySet="NhacCu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuMuon_NhacCu" Association="Self.FK_PhieuMuon_NhacCu">
+      <End Role="NhacCu" EntitySet="NhacCu" />
+      <End Role="PhieuMuon" EntitySet="PhieuMuon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuMuon_SinhVien" Association="Self.FK_PhieuMuon_SinhVien">
+      <End Role="SinhVien" EntitySet="SinhVien" />
+      <End Role="PhieuMuon" EntitySet="PhieuMuon" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

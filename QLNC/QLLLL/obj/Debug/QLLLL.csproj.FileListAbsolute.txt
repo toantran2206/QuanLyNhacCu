@@ -1,0 +1,16 @@
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\bin\Debug\QLLLL.exe.config
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\bin\Debug\QLLLL.exe
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\bin\Debug\QLLLL.pdb
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.csprojResolveAssemblyReference.cache
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.Form1.resources
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.Properties.Resources.resources
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.csproj.GenerateResource.Cache
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.exe
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.pdb
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\bin\Debug\EntityFramework.dll
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\bin\Debug\EntityFramework.xml
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.PM.resources
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.QLNC.resources
+C:\Users\UnDead\Desktop\QLLLL\QLLLL\obj\Debug\QLLLL.QLSV.resources

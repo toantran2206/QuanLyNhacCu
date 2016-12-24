@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LoaiNhacCu">
+    <Key>
+      <PropertyRef Name="MaLoaiNC" />
+    </Key>
+    <Property Name="MaLoaiNC" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenLoaiNC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NhacCus" Relationship="Self.FK_NhacCu_LoaiNhacCu" FromRole="LoaiNhacCu" ToRole="NhacCu" />
+  </EntityType>
+  <EntityType Name="NhacCu">
+    <Key>
+      <PropertyRef Name="MaNC" />
+    </Key>
+    <Property Name="MaNC" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenNC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NhanHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NamSanXuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Double" />
+    <Property Name="MaLoaiNC" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="LoaiNhacCu" Relationship="Self.FK_NhacCu_LoaiNhacCu" FromRole="NhacCu" ToRole="LoaiNhacCu" />
+    <NavigationProperty Name="PhieuMuons" Relationship="Self.FK_PhieuMuon_NhacCu" FromRole="NhacCu" ToRole="PhieuMuon" />
+  </EntityType>
+  <EntityType Name="PhieuMuon">
+    <Key>
+      <PropertyRef Name="MaSV" />
+      <PropertyRef Name="MaNC" />
+    </Key>
+    <Property Name="MaSV" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaNC" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgayMuon" Type="DateTime" Precision="3" />
+    <Property Name="NgayTra" Type="DateTime" Precision="3" />
+    <Property Name="ThanhTien" Type="Double" />
+    <NavigationProperty Name="NhacCu" Relationship="Self.FK_PhieuMuon_NhacCu" FromRole="PhieuMuon" ToRole="NhacCu" />
+    <NavigationProperty Name="SinhVien" Relationship="Self.FK_PhieuMuon_SinhVien" FromRole="PhieuMuon" ToRole="SinhVien" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="MaSV" />
+    </Key>
+    <Property Name="MaSV" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PhieuMuons" Relationship="Self.FK_PhieuMuon_SinhVien" FromRole="SinhVien" ToRole="PhieuMuon" />
+  </EntityType>
+  <Association Name="FK_NhacCu_LoaiNhacCu">
+    <End Role="LoaiNhacCu" Type="Self.LoaiNhacCu" Multiplicity="1" />
+    <End Role="NhacCu" Type="Self.NhacCu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiNhacCu">
+        <PropertyRef Name="MaLoaiNC" />
+      </Principal>
+      <Dependent Role="NhacCu">
+        <PropertyRef Name="MaLoaiNC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuMuon_NhacCu">
+    <End Role="NhacCu" Type="Self.NhacCu" Multiplicity="1" />
+    <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhacCu">
+        <PropertyRef Name="MaNC" />
+      </Principal>
+      <Dependent Role="PhieuMuon">
+        <PropertyRef Name="MaNC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuMuon_SinhVien">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
+    <End Role="PhieuMuon" Type="Self.PhieuMuon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="MaSV" />
+      </Principal>
+      <Dependent Role="PhieuMuon">
+        <PropertyRef Name="MaSV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLNCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LoaiNhacCus" EntityType="Self.LoaiNhacCu" />
+    <EntitySet Name="NhacCus" EntityType="Self.NhacCu" />
+    <EntitySet Name="PhieuMuons" EntityType="Self.PhieuMuon" />
+    <EntitySet Name="SinhViens" EntityType="Self.SinhVien" />
+    <AssociationSet Name="FK_NhacCu_LoaiNhacCu" Association="Self.FK_NhacCu_LoaiNhacCu">
+      <End Role="LoaiNhacCu" EntitySet="LoaiNhacCus" />
+      <End Role="NhacCu" EntitySet="NhacCus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuMuon_NhacCu" Association="Self.FK_PhieuMuon_NhacCu">
+      <End Role="NhacCu" EntitySet="NhacCus" />
+      <End Role="PhieuMuon" EntitySet="PhieuMuons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuMuon_SinhVien" Association="Self.FK_PhieuMuon_SinhVien">
+      <End Role="SinhVien" EntitySet="SinhViens" />
+      <End Role="PhieuMuon" EntitySet="PhieuMuons" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

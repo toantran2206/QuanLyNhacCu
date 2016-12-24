@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="338bc51e5a0444f5a08910932c6f82cd" Name="Diagram1">
+        <EntityTypeShape EntityType="QLNCModel.LoaiNhacCu" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNCModel.NhacCu" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNCModel.PhieuMuon" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNCModel.SinhVien" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="QLNCModel.FK_NhacCu_LoaiNhacCu" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNCModel.FK_PhieuMuon_NhacCu" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNCModel.FK_PhieuMuon_SinhVien" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
